@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://dfl2fj6b80och"]
+
+[ext_resource type="Script" uid="uid://sdsjk70apow5" path="res://scripts/objects/breakable.gd" id="1_byg5p"]
+[ext_resource type="PackedScene" uid="uid://cgs0ck6y2p5qo" path="res://scenes/weapons/bullet.tscn" id="2_leb87"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_owh6v"]
+size = Vector3(10, 5, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pdlmq"]
+albedo_color = Color(0.8, 0.3137255, 0.22745098, 1)
+
+[node name="breakableWall" type="Node3D" unique_id=766925952 node_paths=PackedStringArray("hitbox")]
+script = ExtResource("1_byg5p")
+hitbox = NodePath("Area3D")
+takes_damage_from = Array[PackedScene]([ExtResource("2_leb87")])
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1363764824]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=632255156]
+shape = SubResource("BoxShape3D_owh6v")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1083063627]
+use_collision = true
+size = Vector3(10, 5, 1)
+material = SubResource("StandardMaterial3D_pdlmq")

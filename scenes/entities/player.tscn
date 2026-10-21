@@ -1,0 +1,331 @@
+[gd_scene format=3 uid="uid://cj47g705sipon"]
+
+[ext_resource type="Script" uid="uid://bcnru8jm2bmx7" path="res://scripts/entites/player/player.gd" id="1_3sokb"]
+[ext_resource type="Resource" uid="uid://c0jly4k2lbko6" path="res://scripts/resources/playerMovementData.tres" id="2_txtga"]
+[ext_resource type="Resource" uid="uid://mloxi7esnu4d" path="res://scripts/resources/playerSettings.tres" id="3_pdlmq"]
+[ext_resource type="Script" uid="uid://8qgk8meya3si" path="res://scripts/entites/player/playerHead.gd" id="4_527fh"]
+[ext_resource type="Script" uid="uid://3gholx071eij" path="res://scripts/entites/player/camera.gd" id="5_ow4gm"]
+[ext_resource type="Shader" uid="uid://dam7cp2iipprd" path="res://scripts/shaders/speedEffect.gdshader" id="6_fxsl8"]
+[ext_resource type="Texture2D" uid="uid://cgnsuwxq8qeqm" path="res://assets/noise.jpg" id="7_d5vbf"]
+[ext_resource type="Script" uid="uid://bw3re1ayavtco" path="res://scripts/shaders/speed_effect_shader.gd" id="8_fh725"]
+[ext_resource type="PackedScene" uid="uid://cexpbr4n0aqwd" path="res://scenes/weapons/gun.tscn" id="9_mgf8m"]
+[ext_resource type="Script" uid="uid://cq6o3jit3yux1" path="res://scripts/managers/state_machine.gd" id="10_dgu1j"]
+[ext_resource type="Script" uid="uid://cposg7uxagxss" path="res://scripts/states/playerIdle.gd" id="11_dta47"]
+[ext_resource type="Script" uid="uid://dmrl7ca0l46q0" path="res://scripts/states/playerWalk.gd" id="12_w2gpp"]
+[ext_resource type="Script" uid="uid://cp84vvhmmph6q" path="res://scripts/states/playerSprint.gd" id="13_fanr8"]
+[ext_resource type="Script" uid="uid://dk2g2w72hyflc" path="res://scripts/states/playerJump.gd" id="14_ufll5"]
+[ext_resource type="Script" uid="uid://bhjgpv2stf26k" path="res://scripts/states/playerFall.gd" id="15_sepq8"]
+[ext_resource type="Script" uid="uid://didgoorosmiqv" path="res://scripts/states/playerLand.gd" id="16_sbcfq"]
+[ext_resource type="Script" uid="uid://c0ndchk7k4wig" path="res://scripts/states/playerCrouch.gd" id="17_dh7fw"]
+[ext_resource type="Script" uid="uid://cek6wpdp1pjsu" path="res://scripts/states/playerSlide.gd" id="18_0hxvw"]
+[ext_resource type="Script" uid="uid://by5ajpv8ogpcc" path="res://scripts/states/playerWallRun.gd" id="19_01in8"]
+[ext_resource type="Script" uid="uid://dgwfkwl7s2ovd" path="res://scripts/states/playerGroundPound.gd" id="20_wk3cj"]
+[ext_resource type="Script" uid="uid://vbhuo6p307rd" path="res://scripts/states/helpers/jumpBuffer.gd" id="21_abpb2"]
+[ext_resource type="Script" uid="uid://c3thelhpxsajg" path="res://scripts/states/playerRailGrind.gd" id="21_pdlmq"]
+[ext_resource type="Script" uid="uid://udkffw8mcm3q" path="res://scripts/weapons/grappleManager.gd" id="22_2ctvp"]
+[ext_resource type="PackedScene" uid="uid://5o7oh4ia7f6x" path="res://scenes/weapons/grappleRope.tscn" id="23_cw7ot"]
+[ext_resource type="PackedScene" uid="uid://drb20imihwsge" path="res://scenes/menus/menu.tscn" id="24_y3bkx"]
+[ext_resource type="Script" uid="uid://csaq3e77h0hew" path="res://scripts/managers/audioManager.gd" id="25_0pwya"]
+[ext_resource type="AudioStream" uid="uid://bjd5486rakgae" path="res://assets/audio/sfx/footsteps/footstep_concret_1.wav" id="26_kvgni"]
+[ext_resource type="AudioStream" uid="uid://c53ddkj374lhy" path="res://assets/audio/sfx/footsteps/footstep_concret_2.wav" id="27_28nan"]
+[ext_resource type="AudioStream" uid="uid://c0q3n2yh38ndy" path="res://assets/audio/sfx/footsteps/footstep_concret_3.wav" id="28_30ath"]
+[ext_resource type="AudioStream" uid="uid://j0gxt26k740k" path="res://assets/audio/sfx/footsteps/footstep_concret_4.wav" id="29_7jof7"]
+[ext_resource type="AudioStream" uid="uid://d27vd756ffmsp" path="res://assets/audio/sfx/footsteps/footstep_concret_5.wav" id="30_3l0sx"]
+[ext_resource type="AudioStream" uid="uid://wqwrg7lw2sxn" path="res://assets/audio/sfx/land_concret.wav" id="31_fb8ru"]
+[ext_resource type="AudioStream" uid="uid://d1whdbd1ivxwa" path="res://assets/audio/sfx/wind_1.wav" id="32_lkcs3"]
+[ext_resource type="AudioStream" uid="uid://mfxxf82dabns" path="res://assets/audio/sfx/wind_2.wav" id="33_c4npp"]
+[ext_resource type="Script" uid="uid://cuwbpjpjj2ao4" path="res://scripts/states/helpers/ledgeAssistHelper.gd" id="34_wj0l6"]
+[ext_resource type="Script" uid="uid://dcc2mshobyy8c" path="res://scripts/objects/grind_assist.gd" id="35_txtga"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_y8440"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_owh6v"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_owh6v"]
+flip_faces = true
+size = Vector2(2, 2)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4n43c"]
+render_priority = 0
+shader = ExtResource("6_fxsl8")
+shader_parameter/noise = ExtResource("7_d5vbf")
+shader_parameter/line_count = 0.45000000670554
+shader_parameter/distortion_power = 0.034
+shader_parameter/line_falloff = 1.0
+shader_parameter/mask_size = 0.175
+shader_parameter/mask_edge = 0.195
+shader_parameter/animation_speed = 20.0
+shader_parameter/blur_strength = 0.01
+shader_parameter/effect_power = 0.0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_y8440"]
+lightmap_size_hint = Vector2i(12, 12)
+material = SubResource("ShaderMaterial_4n43c")
+flip_faces = true
+orientation = 2
+
+[sub_resource type="SphereMesh" id="SphereMesh_owh6v"]
+radius = 0.4
+height = 0.8
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_owh6v"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_owh6v"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_hjrm4"]
+streams_count = 5
+stream_0/stream = ExtResource("26_kvgni")
+stream_1/stream = ExtResource("27_28nan")
+stream_2/stream = ExtResource("28_30ath")
+stream_3/stream = ExtResource("29_7jof7")
+stream_4/stream = ExtResource("30_3l0sx")
+
+[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_4n43c"]
+clip_count = 2
+clip_0/name = &"walk"
+clip_0/stream = SubResource("AudioStreamRandomizer_hjrm4")
+clip_0/auto_advance = 0
+clip_1/name = &"land"
+clip_1/stream = ExtResource("31_fb8ru")
+clip_1/auto_advance = 0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_y8440"]
+streams_count = 2
+stream_0/stream = ExtResource("32_lkcs3")
+stream_1/stream = ExtResource("33_c4npp")
+
+[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_owh6v"]
+clip_count = 1
+clip_0/name = &"wind"
+clip_0/stream = SubResource("AudioStreamRandomizer_y8440")
+clip_0/auto_advance = 0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_owh6v"]
+size = Vector3(1, 0.42871094, 1)
+
+[node name="Player" type="CharacterBody3D" unique_id=1842126280 groups=["player"]]
+collision_layer = 2
+script = ExtResource("1_3sokb")
+playerData = ExtResource("2_txtga")
+playerSettings = ExtResource("3_pdlmq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=363828608]
+shape = SubResource("CapsuleShape3D_y8440")
+
+[node name="body" type="MeshInstance3D" parent="." unique_id=636355248]
+mesh = SubResource("CapsuleMesh_owh6v")
+
+[node name="ceilingCheckRay" type="RayCast3D" parent="." unique_id=1276811963]
+transform = Transform3D(-5, 8.742278e-08, 0, -4.371139e-07, -1, 0, 0, 0, 5, 0, 0.45, 0)
+
+[node name="floorCheck" type="RayCast3D" parent="." unique_id=1386812208]
+transform = Transform3D(5, 0, 0, 0, 1, 0, 0, 0, 5, 0, 0, 0)
+target_position = Vector3(0, -5, 0)
+
+[node name="head" type="Node3D" parent="." unique_id=1236886794 node_paths=PackedStringArray("player")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("4_527fh")
+player = NodePath("..")
+frequncy = 1.5
+amplitude = 0.05
+reset_time = 3.0
+
+[node name="Camera3D" type="Camera3D" parent="head" unique_id=520133872 node_paths=PackedStringArray("player")]
+current = true
+fov = 100.0
+script = ExtResource("5_ow4gm")
+player = NodePath("../..")
+
+[node name="shaderMesh" type="MeshInstance3D" parent="head/Camera3D" unique_id=1918902995]
+visible = false
+extra_cull_margin = 16384.0
+mesh = SubResource("QuadMesh_owh6v")
+
+[node name="speedEffectShader" type="MeshInstance3D" parent="head/Camera3D" unique_id=447467830 node_paths=PackedStringArray("player")]
+visible = false
+mesh = SubResource("PlaneMesh_y8440")
+script = ExtResource("8_fh725")
+player = NodePath("../../..")
+
+[node name="RayCast3D" type="RayCast3D" parent="head" unique_id=144475965]
+transform = Transform3D(1, 0, 0, 0, 0.9999998, 0, 0, 0, 0.9999998, 0, 0, 0)
+target_position = Vector3(0, 0, -20)
+
+[node name="gun" parent="head" unique_id=298200717 node_paths=PackedStringArray("camera") instance=ExtResource("9_mgf8m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.29838943, -0.38151252, -0.33243203)
+camera = NodePath("../Camera3D")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="head" unique_id=695179672]
+mesh = SubResource("SphereMesh_owh6v")
+
+[node name="stateMachine" type="Node" parent="." unique_id=746243588 node_paths=PackedStringArray("inital_state")]
+script = ExtResource("10_dgu1j")
+inital_state = NodePath("idle")
+
+[node name="idle" type="Node" parent="stateMachine" unique_id=1385220217 node_paths=PackedStringArray("player")]
+script = ExtResource("11_dta47")
+player = NodePath("../..")
+
+[node name="walk" type="Node" parent="stateMachine" unique_id=1095215620 node_paths=PackedStringArray("audioManager", "player", "head")]
+script = ExtResource("12_w2gpp")
+audioManager = NodePath("../../Audio/AudioManager")
+player = NodePath("../..")
+head = NodePath("../../head")
+metadata/_custom_type_script = "uid://dmrl7ca0l46q0"
+
+[node name="sprint" type="Node" parent="stateMachine" unique_id=1044277619 node_paths=PackedStringArray("player", "audioManager")]
+script = ExtResource("13_fanr8")
+player = NodePath("../..")
+audioManager = NodePath("../../Audio/AudioManager")
+metadata/_custom_type_script = "uid://cp84vvhmmph6q"
+
+[node name="jump" type="Node" parent="stateMachine" unique_id=535340782 node_paths=PackedStringArray("player", "floorCheck", "ledgeAssist", "grapple")]
+script = ExtResource("14_ufll5")
+player = NodePath("../..")
+floorCheck = NodePath("../../floorCheck")
+ledgeAssist = NodePath("../../ledgeAssist")
+grapple = NodePath("../../grappleManager")
+metadata/_custom_type_script = "uid://dk2g2w72hyflc"
+
+[node name="fall" type="Node" parent="stateMachine" unique_id=1272485810 node_paths=PackedStringArray("player", "floorCheck", "grapple", "ledgeAssist")]
+script = ExtResource("15_sepq8")
+player = NodePath("../..")
+floorCheck = NodePath("../../floorCheck")
+grapple = NodePath("../../grappleManager")
+ledgeAssist = NodePath("../../ledgeAssist")
+metadata/_custom_type_script = "uid://bhjgpv2stf26k"
+
+[node name="land" type="Node" parent="stateMachine" unique_id=2013104971 node_paths=PackedStringArray("audioManager", "player")]
+script = ExtResource("16_sbcfq")
+audioManager = NodePath("../../Audio/AudioManager")
+player = NodePath("../..")
+metadata/_custom_type_script = "uid://didgoorosmiqv"
+
+[node name="crouch" type="Node" parent="stateMachine" unique_id=960885369 node_paths=PackedStringArray("audioManager", "player")]
+script = ExtResource("17_dh7fw")
+audioManager = NodePath("../../Audio/AudioManager")
+player = NodePath("../..")
+metadata/_custom_type_script = "uid://c0ndchk7k4wig"
+
+[node name="slide" type="Node" parent="stateMachine" unique_id=268844959 node_paths=PackedStringArray("player")]
+script = ExtResource("18_0hxvw")
+player = NodePath("../..")
+metadata/_custom_type_script = "uid://cek6wpdp1pjsu"
+
+[node name="wallRun" type="Node" parent="stateMachine" unique_id=973574841 node_paths=PackedStringArray("audioManager", "player", "head")]
+script = ExtResource("19_01in8")
+audioManager = NodePath("../../Audio/AudioManager")
+player = NodePath("../..")
+head = NodePath("../../head")
+metadata/_custom_type_script = "uid://by5ajpv8ogpcc"
+
+[node name="groundPound" type="Node" parent="stateMachine" unique_id=1387196044 node_paths=PackedStringArray("player")]
+script = ExtResource("20_wk3cj")
+player = NodePath("../..")
+metadata/_custom_type_script = "uid://dgwfkwl7s2ovd"
+
+[node name="railGrind" type="Node" parent="stateMachine" unique_id=1492509687 node_paths=PackedStringArray("player", "railAssit")]
+script = ExtResource("21_pdlmq")
+player = NodePath("../..")
+railAssit = NodePath("../../grindAssist")
+metadata/_custom_type_script = "uid://c3thelhpxsajg"
+
+[node name="grappleManager" type="Node" parent="." unique_id=975712797 node_paths=PackedStringArray("player", "playerState", "ray", "gun_barrel_marker")]
+script = ExtResource("22_2ctvp")
+player = NodePath("..")
+playerState = NodePath("../stateMachine")
+ray = NodePath("../head/RayCast3D")
+ROPE_SCENE = ExtResource("23_cw7ot")
+gun_barrel_marker = NodePath("../head/gun")
+
+[node name="ledgeAssist" type="Node3D" parent="." unique_id=1855207471 node_paths=PackedStringArray("player", "lowerRay", "higherRay", "ledgeCast", "ceilingCheckRay")]
+script = ExtResource("34_wj0l6")
+player = NodePath("..")
+lowerRay = NodePath("lower")
+higherRay = NodePath("higher")
+ledgeCast = NodePath("ShapeCast3D")
+ceilingCheckRay = NodePath("ceilingCheck")
+maxLedgeSnapHeight = 1.0
+
+[node name="lower" type="RayCast3D" parent="ledgeAssist" unique_id=1040631327]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+target_position = Vector3(0, 0, -1)
+
+[node name="higher" type="RayCast3D" parent="ledgeAssist" unique_id=625122502]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+target_position = Vector3(0, 0, -1)
+
+[node name="ShapeCast3D" type="ShapeCast3D" parent="ledgeAssist" unique_id=1626091508]
+transform = Transform3D(1.6, 0, 0, 0, 1.6, 0, 0, 0, 1.6, 0, -0.6, -0.5)
+shape = SubResource("SphereShape3D_owh6v")
+target_position = Vector3(0, 0, 0)
+margin = 0.04
+
+[node name="ceilingCheck" type="RayCast3D" parent="ledgeAssist" unique_id=2052274363]
+transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 1, 0, 1.5, 0)
+target_position = Vector3(0, 0.5, 0)
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=52051741]
+
+[node name="Label" type="Label" parent="HUD" unique_id=1395168283]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="TextureRect" type="TextureRect" parent="HUD" unique_id=102953948]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -2.0
+offset_top = -2.0
+offset_right = 2.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CanvasTexture_owh6v")
+
+[node name="Menu" parent="." unique_id=1039947266 instance=ExtResource("24_y3bkx")]
+offset_left = 16.0
+offset_top = 24.0
+offset_right = -56.0
+offset_bottom = -24.0
+
+[node name="Audio" type="Node" parent="." unique_id=2783143]
+
+[node name="AudioManager" type="Node" parent="Audio" unique_id=1515636702 node_paths=PackedStringArray("player", "audioPlayer", "windPlayer")]
+script = ExtResource("25_0pwya")
+player = NodePath("../..")
+audioPlayer = NodePath("../AudioStreamPlayer3D")
+windPlayer = NodePath("../AudioStreamPlayer3D_wind")
+
+[node name="AudioListener3D" type="AudioListener3D" parent="Audio" unique_id=207073533]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4010885, 0)
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Audio" unique_id=627747976]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8807075, 0)
+stream = SubResource("AudioStreamInteractive_4n43c")
+volume_db = -15.0
+bus = &"SFX"
+
+[node name="AudioStreamPlayer3D_wind" type="AudioStreamPlayer3D" parent="Audio" unique_id=38220552]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.420152, 0)
+stream = SubResource("AudioStreamInteractive_owh6v")
+bus = &"SFX"
+
+[node name="jumpBuffer" type="Timer" parent="." unique_id=605720769 node_paths=PackedStringArray("player")]
+one_shot = true
+script = ExtResource("21_abpb2")
+player = NodePath("..")
+
+[node name="grindAssist" type="Area3D" parent="." unique_id=1501492191 node_paths=PackedStringArray("state_machine")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, -0.5, 0)
+script = ExtResource("35_txtga")
+state_machine = NodePath("../stateMachine")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="grindAssist" unique_id=2032554328]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.28564453, 0)
+shape = SubResource("BoxShape3D_owh6v")
+
+[connection signal="area_entered" from="grindAssist" to="grindAssist" method="_on_area_entered"]
+[connection signal="area_exited" from="grindAssist" to="grindAssist" method="_on_area_exited"]

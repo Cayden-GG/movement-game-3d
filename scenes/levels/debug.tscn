@@ -1,0 +1,138 @@
+[gd_scene format=3 uid="uid://ebrbvovai5lt"]
+
+[ext_resource type="PackedScene" uid="uid://b1p8cjgarsj3w" path="res://scenes/objects/grind_rail.tscn" id="1_gd5e8"]
+[ext_resource type="Texture2D" uid="uid://beogt47to3ocu" path="res://assets/models/table_Plaster_01-512x512.png" id="1_j2wbo"]
+[ext_resource type="PackedScene" uid="uid://c5om0p6aglrhx" path="res://scenes/objects/door.tscn" id="2_t48sv"]
+[ext_resource type="Resource" uid="uid://du6cmmy0w8gli" path="res://scripts/resources/levels/level_1.tres" id="3_svo7y"]
+[ext_resource type="PackedScene" uid="uid://cj47g705sipon" path="res://scenes/entities/player.tscn" id="4_5ph7u"]
+[ext_resource type="Script" uid="uid://co58fjoc2sroa" path="res://scripts/managers/levelManager.gd" id="5_o7ao6"]
+[ext_resource type="PackedScene" uid="uid://cuylnfqe6rylj" path="res://scenes/objects/boost_gate.tscn" id="5_oachk"]
+[ext_resource type="PackedScene" uid="uid://dfl2fj6b80och" path="res://scenes/objects/breakable_wall.tscn" id="6_8dtf1"]
+[ext_resource type="PackedScene" uid="uid://d2vv2fyjdrseo" path="res://scenes/entities/enemy.tscn" id="6_naxnx"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_f3sb7"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_fj7yv"]
+sky_material = SubResource("ProceduralSkyMaterial_f3sb7")
+
+[sub_resource type="Environment" id="Environment_tlwt5"]
+background_mode = 2
+sky = SubResource("Sky_fj7yv")
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nnsk1"]
+albedo_texture = ExtResource("1_j2wbo")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_owh6v"]
+albedo_color = Color(0.26582953, 0.47356308, 0.8597636, 1)
+
+[node name="debug" type="Node3D" unique_id=1565317929]
+
+[node name="Env" type="Node3D" parent="." unique_id=1495477]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Env" unique_id=1854851822]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Env" unique_id=1204287188]
+environment = SubResource("Environment_tlwt5")
+
+[node name="Stage" type="Node3D" parent="." unique_id=1977124382]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 0)
+
+[node name="grindRail" parent="Stage" unique_id=393676041 instance=ExtResource("1_gd5e8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24, 1, 0)
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="Stage" unique_id=618603890]
+use_collision = true
+
+[node name="Floor" type="CSGBox3D" parent="Stage/CSGCombiner3D" unique_id=788180709]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.5, 0, -17)
+size = Vector3(150, 1, 150)
+material = SubResource("StandardMaterial3D_nnsk1")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Stage/CSGCombiner3D" unique_id=2084295317]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15, 4)
+size = Vector3(2, 2, 2)
+material = SubResource("StandardMaterial3D_owh6v")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Stage/CSGCombiner3D" unique_id=1627938533]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 20, 5)
+size = Vector3(2, 2, 2)
+material = SubResource("StandardMaterial3D_owh6v")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Stage/CSGCombiner3D" unique_id=1392079060]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 23, -2)
+size = Vector3(2, 2, 2)
+material = SubResource("StandardMaterial3D_owh6v")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Stage/CSGCombiner3D" unique_id=1287129870]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15, -8)
+size = Vector3(2, 2, 2)
+material = SubResource("StandardMaterial3D_owh6v")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Stage/CSGCombiner3D" unique_id=361680964]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 4, -7)
+size = Vector3(2, 10, 42)
+material = SubResource("StandardMaterial3D_owh6v")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Stage/CSGCombiner3D" unique_id=1646456945]
+transform = Transform3D(1, 0, 0, 0, 0.9396926, -0.34202012, 0, 0.34202012, 0.9396926, 0, 14.312724, -49.828934)
+size = Vector3(5, 0.5, 82)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="Stage/CSGCombiner3D" unique_id=743125253]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -72, 5, -70)
+size = Vector3(1, 9, 12)
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="Stage/CSGCombiner3D" unique_id=290378210]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -67, 9, -86.5)
+size = Vector3(1, 9, 45)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="Stage/CSGCombiner3D" unique_id=1856576043]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -62, 5, -70)
+size = Vector3(1, 9, 12)
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="Stage/CSGCombiner3D" unique_id=48958780]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -67, 5, -64)
+size = Vector3(1, 9, 12)
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="Stage/CSGCombiner3D" unique_id=2018750675]
+transform = Transform3D(-4.371139e-08, 0, 1, -0.86602545, 0.49999997, -3.7855173e-08, -0.49999997, -0.86602545, -2.1855692e-08, -67, 4.5, -55.133976)
+size = Vector3(1, 19, 12)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Stage" unique_id=2109218028]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 4)
+use_collision = true
+size = Vector3(2, 2, 2)
+material = SubResource("StandardMaterial3D_owh6v")
+
+[node name="door" parent="Stage" unique_id=1153481587 node_paths=PackedStringArray("levelManager") instance=ExtResource("2_t48sv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1, 1)
+collision_mask = 2
+levelData = ExtResource("3_svo7y")
+levelManager = NodePath("../../LevelManager")
+
+[node name="boostGate" parent="Stage" unique_id=327813510 instance=ExtResource("5_oachk")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -32, 3, 0)
+
+[node name="breakableWall" parent="Stage" unique_id=766925952 instance=ExtResource("6_8dtf1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 4, 0)
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1754157280]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 7, 4, 4)
+fov = 89.2
+
+[node name="LevelManager" type="Node" parent="." unique_id=1347787299 node_paths=PackedStringArray("enemyContainer")]
+script = ExtResource("5_o7ao6")
+enemyContainer = NodePath("../enemyContainer")
+metadata/_custom_type_script = "uid://co58fjoc2sroa"
+
+[node name="enemyContainer" type="Node" parent="." unique_id=153847361]
+
+[node name="enemy" parent="enemyContainer" unique_id=1190165297 instance=ExtResource("6_naxnx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 1, 0)
+
+[node name="Player" parent="." unique_id=1842126280 instance=ExtResource("4_5ph7u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 4, 5)

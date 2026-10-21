@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://5o7oh4ia7f6x"]
+
+[ext_resource type="Script" uid="uid://w0kib56kbfqx" path="res://scripts/weapons/grappleRope.gd" id="1_ltuc7"]
+
+[sub_resource type="Curve3D" id="Curve3D_aqkhc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c0l8a"]
+albedo_color = Color(0.87036, 0.14578125, 0.2299082, 1)
+
+[node name="grappleRope" type="Node3D" unique_id=1953568961]
+script = ExtResource("1_ltuc7")
+max_sag = 3.0
+retract_speed = 60.0
+
+[node name="Path3D" type="Path3D" parent="." unique_id=1923889978]
+curve = SubResource("Curve3D_aqkhc")
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="Path3D" unique_id=1007717361]
+mode = 2
+path_node = NodePath("..")
+path_interval_type = 1
+path_interval = 0.5
+path_simplify_angle = 0.0
+path_rotation = 2
+path_rotation_accurate = false
+path_local = false
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = false
+material = SubResource("StandardMaterial3D_c0l8a")

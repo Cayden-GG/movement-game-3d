@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://drb20imihwsge"]
+
+[ext_resource type="Script" uid="uid://qcpr3wvgad4t" path="res://scripts/menus/menu.gd" id="1_yqeox"]
+[ext_resource type="Resource" uid="uid://mloxi7esnu4d" path="res://scripts/resources/playerSettings.tres" id="2_vjb58"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_4n43c"]
+
+[node name="Menu" type="Control" unique_id=1039947266 node_paths=PackedStringArray("default_focused_control")]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yqeox")
+playerSettings = ExtResource("2_vjb58")
+default_focused_control = NodePath("CanvasLayer/VBoxContainer/toggleCrouch")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=706780748]
+visible = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer" unique_id=2120370047]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="toggleCrouch" type="CheckButton" parent="CanvasLayer/VBoxContainer" unique_id=2137441266]
+layout_mode = 2
+text = "Toggle Crouch"
+
+[node name="toggleSprint" type="CheckButton" parent="CanvasLayer/VBoxContainer" unique_id=1316829480]
+layout_mode = 2
+text = "Toggle Sprint"
+
+[node name="Cursor" type="TextureRect" parent="CanvasLayer" unique_id=715124440]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 10.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("CanvasTexture_4n43c")
+
+[connection signal="toggled" from="CanvasLayer/VBoxContainer/toggleCrouch" to="." method="_on_toggle_slide_toggled"]
+[connection signal="toggled" from="CanvasLayer/VBoxContainer/toggleSprint" to="." method="_on_toggle_sprint_toggled"]

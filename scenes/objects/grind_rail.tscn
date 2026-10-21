@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://b1p8cjgarsj3w"]
+
+[ext_resource type="Script" uid="uid://bk5k4jvxrpn3k" path="res://scripts/objects/grind_rail.gd" id="1_flver"]
+
+[sub_resource type="Curve3D" id="Curve3D_pofx4"]
+closed = true
+_data = {
+"points": PackedVector3Array(0.4, -0.3, -0.7, -0.4, 0.3, 0.7, 0, 1, -10, 0.5, 0.2, -0.6, -0.5, -0.2, 0.6, -2.8, 1, -1.7, -0.2, 0.4, -0.2, 0.2, -0.4, 0.2, -4, 1, 2, -0.4, -0.1, 0.1, 0.4, 0.1, -0.1, 1, 1, 3, 0.2, -0.7, 0.2, -0.2, 0.7, -0.2, 4, -1, -4, 0, 0, 0, 0, 0, 0, 2.4488173, -0.10085797, -7.140724),
+"tilts": PackedFloat32Array(-0.2617994, 0, 0, 0, 0, 0)
+}
+point_count = 6
+
+[node name="grindRail" type="Node3D" unique_id=393676041 node_paths=PackedStringArray("path", "path_follow")]
+script = ExtResource("1_flver")
+path = NodePath("grindRail")
+path_follow = NodePath("grindRail/PathFollow3D")
+
+[node name="grindRail" type="Path3D" parent="." unique_id=1882941526]
+curve = SubResource("Curve3D_pofx4")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="grindRail" unique_id=1819194943]
+transform = Transform3D(-0.7938758, 0.39184698, 0.4649907, 0.24256983, 0.90528315, -0.34874293, -0.5576021, -0.1640659, -0.8137334, 0, 1, -10)

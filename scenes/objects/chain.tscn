@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://b522bf0c1nce6"]
+
+[ext_resource type="Script" uid="uid://we2mp1slqmdt" path="res://scripts/objects/linkContainer.gd" id="1_kju67"]
+
+[node name="chain" type="Node3D" unique_id=273072475 node_paths=PackedStringArray("anchor", "linkContainer")]
+script = ExtResource("1_kju67")
+linkCount = 18
+linkCollisionLayer = 4
+linkCollisionMask = 3
+anchor = NodePath("anchor")
+linkContainer = NodePath("linkContainer")
+
+[node name="anchor" type="StaticBody3D" parent="." unique_id=623309816]
+
+[node name="linkContainer" type="Node3D" parent="." unique_id=2131961962]

@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://cexpbr4n0aqwd"]
+
+[ext_resource type="Script" uid="uid://d3njnoowckec5" path="res://scripts/weapons/gun.gd" id="1_x77fm"]
+[ext_resource type="PackedScene" uid="uid://c7u0fa155b8lw" path="res://assets/models/ShooterEssentials_PolyPack/GLB/Guns/ZC57/ZC57_Rigged.glb" id="2_og67c"]
+
+[node name="gun" type="Node3D" unique_id=298200717]
+script = ExtResource("1_x77fm")
+bulletVelocity = 80.0
+
+[node name="ZC57_Rigged2" parent="." unique_id=1100756047 instance=ExtResource("2_og67c")]
+transform = Transform3D(-8.742278e-08, 2, 0, 8.742278e-08, 3.821371e-15, 2, 2, 8.742278e-08, -8.742278e-08, 0, 0, 0)
+
+[node name="Muzzle" type="Marker3D" parent="." unique_id=729588374]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0037147999, 0.12626013, -0.30035317)

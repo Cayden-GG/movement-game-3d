@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://cuylnfqe6rylj"]
+
+[ext_resource type="Script" uid="uid://sr4y2bhame4a" path="res://scripts/objects/boost_gate.gd" id="1_crv6a"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_owh6v"]
+height = 0.5
+radius = 2.0
+
+[node name="boostGate" type="Area3D" unique_id=327813510]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+collision_mask = 2
+script = ExtResource("1_crv6a")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1815606331]
+shape = SubResource("CylinderShape3D_owh6v")
+
+[node name="MeshInstance3D" type="CSGCylinder3D" parent="." unique_id=1369525193]
+radius = 2.0
+height = 0.3
+sides = 20
+
+[node name="MeshInstance3D2" type="CSGCylinder3D" parent="MeshInstance3D" unique_id=640284066]
+operation = 2
+radius = 1.75
+height = 0.3
+sides = 20
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
