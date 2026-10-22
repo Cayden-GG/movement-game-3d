@@ -17,6 +17,9 @@ var attached_player: Player
 var grind_direction: float = 1.0
 var current_speed: float = 0.0
 
+var attach_timer: float = 0.2
+var cur_attach_timer: float 
+
 func _ready() -> void:
 	path_follow.rotation_mode = PathFollow3D.ROTATION_ORIENTED
 	path_follow.use_model_front = true
@@ -27,8 +30,9 @@ func _ready() -> void:
 func attach_player(player: Player) -> bool:
 	if not path or not path.curve:
 		return false
-		
+	
 	attached_player = player
+	cur_attach_timer = attach_timer
 	
 	# find player location on the rail
 	var local_pos = path.to_local(player.global_position)
@@ -37,6 +41,9 @@ func attach_player(player: Player) -> bool:
 	current_speed = max(player.velocity.length(), min_grind_speed)
 	
 	var rail_forward = -path_follow.global_transform.basis.z
+	if not path.curve.closed:
+		rail_forward *= -1
+		
 	if player.velocity.length_squared() > 0.1:
 		grind_direction = 1.0 if player.velocity.dot(rail_forward) >= 0.0 else -1.0
 	else:
@@ -55,6 +62,7 @@ func update_grind(delta: float, want_jump: bool) -> Dictionary:
 	
 	path_follow.progress += current_speed * grind_direction * delta
 	attached_player.global_position = path_follow.global_position
+	cur_attach_timer -= delta
 	
 	# Update velocity vector using the native orientation basis
 	var rail_forward = -path_follow.global_transform.basis.z
@@ -62,9 +70,10 @@ func update_grind(delta: float, want_jump: bool) -> Dictionary:
 	
 	# End of rail detection
 	var rail_length = path.curve.get_baked_length()
-	if path_follow.progress >= rail_length or path_follow.progress <= 0.0:
-		var exit_vel = _detach_player(0.0)
-		return { "is_grinding": false, "exit_velocity": exit_vel, "next_state": "fall" }
+	if cur_attach_timer <= 0:
+		if  rail_length - path_follow.progress <= 0.25 or path_follow.progress <= 0.25:
+			var exit_vel = _detach_player(0.0)
+			return { "is_grinding": false, "exit_velocity": exit_vel, "next_state": "jump" }
 	
 	return { "is_grinding": true, "exit_velocity": Vector3.ZERO, "next_state": "" }
 

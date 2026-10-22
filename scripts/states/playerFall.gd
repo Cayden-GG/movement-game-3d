@@ -54,7 +54,7 @@ func physics_update(delta: float) -> void:
 			transitioned.emit(self, "wallRun")
 	
 	# ground pound
-	if Input.is_action_pressed("crouch") and not floorCheck.is_colliding() and not grapple.launched:
+	if Input.is_action_just_pressed("crouch") and not floorCheck.is_colliding() and not grapple.launched:
 		transitioned.emit(self, "groundPound")
 		return 
 	

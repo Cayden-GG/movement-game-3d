@@ -10,13 +10,13 @@ _data = {
 }
 point_count = 6
 
-[node name="grindRail" type="Node3D" unique_id=393676041 node_paths=PackedStringArray("path", "path_follow")]
+[node name="grindRail" type="Node3D" unique_id=393676041]
 script = ExtResource("1_flver")
-path = NodePath("grindRail")
-path_follow = NodePath("grindRail/PathFollow3D")
 
 [node name="grindRail" type="Path3D" parent="." unique_id=1882941526]
+visible = false
 curve = SubResource("Curve3D_pofx4")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="grindRail" unique_id=1819194943]
 transform = Transform3D(-0.7938758, 0.39184698, 0.4649907, 0.24256983, 0.90528315, -0.34874293, -0.5576021, -0.1640659, -0.8137334, 0, 1, -10)
+visible = false

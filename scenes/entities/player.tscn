@@ -113,6 +113,7 @@ playerSettings = ExtResource("3_pdlmq")
 shape = SubResource("CapsuleShape3D_y8440")
 
 [node name="body" type="MeshInstance3D" parent="." unique_id=636355248]
+visible = false
 mesh = SubResource("CapsuleMesh_owh6v")
 
 [node name="ceilingCheckRay" type="RayCast3D" parent="." unique_id=1276811963]
@@ -237,6 +238,7 @@ playerState = NodePath("../stateMachine")
 ray = NodePath("../head/RayCast3D")
 ROPE_SCENE = ExtResource("23_cw7ot")
 gun_barrel_marker = NodePath("../head/gun")
+stiffness = 9.0
 
 [node name="ledgeAssist" type="Node3D" parent="." unique_id=1855207471 node_paths=PackedStringArray("player", "lowerRay", "higherRay", "ledgeCast", "ceilingCheckRay")]
 script = ExtResource("34_wj0l6")
