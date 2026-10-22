@@ -1,0 +1,167 @@
+[gd_scene format=3 uid="uid://d0du4cu7t18dp"]
+
+[ext_resource type="Script" uid="uid://ck1uegqex2ey8" path="res://scenes/menus/level_complete_screen.gd" id="1_fx57g"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_hjrm4"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_4n43c"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_owh6v"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_y8440"]
+
+[node name="levelCompleteScreen" type="Control" unique_id=296966209]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fx57g")
+
+[node name="backgroundOverlay" type="TextureRect" parent="." unique_id=288899288]
+modulate = Color(0.007843138, 0.007843138, 0.007843138, 0.44705883)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CanvasTexture_hjrm4")
+
+[node name="Left" type="BoxContainer" parent="." unique_id=2101240241]
+custom_minimum_size = Vector2(576, 0)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 576.0
+grow_vertical = 2
+
+[node name="Image" type="TextureRect" parent="Left" unique_id=53773182]
+modulate = Color(0.53523576, 0.24083978, 0.57040983, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = SubResource("CanvasTexture_4n43c")
+expand_mode = 4
+
+[node name="Badge" type="TextureRect" parent="." unique_id=1374191129]
+modulate = Color(0.19508505, 0.37745914, 0.64520645, 1)
+layout_mode = 0
+offset_left = 240.0
+offset_top = 376.0
+offset_right = 496.0
+offset_bottom = 618.0
+rotation = -0.2617994
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = SubResource("CanvasTexture_4n43c")
+
+[node name="levelComplete" type="Label" parent="." unique_id=1416139890]
+layout_mode = 0
+offset_left = 288.0
+offset_top = 47.999996
+offset_right = 585.0
+offset_bottom = 318.0
+rotation = -0.2617994
+theme_override_constants/line_spacing = -20
+theme_override_font_sizes/font_size = 64
+text = "Level 
+Complete
+"
+
+[node name="Right" type="VBoxContainer" parent="." unique_id=481686343]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -267.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Score" type="VBoxContainer" parent="Right" unique_id=1235265659]
+layout_mode = 2
+
+[node name="newHighScore" type="Label" parent="Right/Score" unique_id=93678771]
+visible = false
+layout_mode = 2
+text = "New High Score"
+
+[node name="currentTime" type="HBoxContainer" parent="Right/Score" unique_id=868408327]
+layout_mode = 2
+
+[node name="badge" type="TextureRect" parent="Right/Score/currentTime" unique_id=1301021377]
+layout_mode = 2
+texture = SubResource("CanvasTexture_owh6v")
+expand_mode = 2
+
+[node name="levelTime" type="Label" parent="Right/Score/currentTime" unique_id=1099689228]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "14.64s"
+
+[node name="bestTime" type="Label" parent="Right" unique_id=438144037]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Best Time: 14.34s"
+
+[node name="leaderBoard" type="ScrollContainer" parent="Right" unique_id=1274885142]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+
+[node name="itemContainer" type="VBoxContainer" parent="Right/leaderBoard" unique_id=2043544454]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Right/leaderBoard/itemContainer" unique_id=1687256820]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Global Leaderboard"
+
+[node name="header" type="HBoxContainer" parent="Right/leaderBoard/itemContainer" unique_id=865897873]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="Right/leaderBoard/itemContainer/header" unique_id=5880935]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+text = "Name"
+
+[node name="Time" type="Label" parent="Right/leaderBoard/itemContainer/header" unique_id=1008383788]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+text = "Time"
+
+[node name="item" type="HBoxContainer" parent="Right/leaderBoard/itemContainer" unique_id=1564170538]
+layout_mode = 2
+
+[node name="playerName" type="Label" parent="Right/leaderBoard/itemContainer/item" unique_id=811346224]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+text = "Cayden"
+
+[node name="badge" type="TextureRect" parent="Right/leaderBoard/itemContainer/item" unique_id=1172891849]
+layout_mode = 2
+texture = SubResource("CanvasTexture_y8440")
+expand_mode = 2
+
+[node name="playerTime" type="Label" parent="Right/leaderBoard/itemContainer/item" unique_id=106622791]
+layout_mode = 2
+text = "12.65s"
+
+[node name="buttons" type="HBoxContainer" parent="Right" unique_id=495297003]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Next" type="Button" parent="Right/buttons" unique_id=134788690]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Continue"
+
+[node name="mainMenu" type="Button" parent="Right/buttons" unique_id=1751263272]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Main Menu"

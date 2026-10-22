@@ -19,5 +19,4 @@ func _on_body_entered(body: Node3D) -> void:
 	
 	if body is Player and levelManager.enemyArray.size() == 0:
 		print("level complete")
-		levelManager.endTime = levelManager.levelTimer
-		levelManager.timerStarted = false
+		levelManager._on_level_complete()

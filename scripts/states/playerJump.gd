@@ -34,6 +34,7 @@ func physics_update(delta: float) -> void:
 	if input_dir and player.is_on_wall():
 		var wall_normal = player.get_slide_collision(0).get_normal()
 		var angle = rad_to_deg(player.direction.angle_to(wall_normal))
+		
 		if angle < 135 and player.velocity.length() > playerData.MIN_WALL_RUN_VELOCITY:
 			await get_tree().create_timer(0.13).timeout
 			transitioned.emit(self, "wallRun")

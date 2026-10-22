@@ -2,6 +2,7 @@ extends Node
 class_name LevelManager
 
 #@export var levelData: Array[LevelData]
+@export var levelCompleteScene: PackedScene = load("res://scenes/menus/level_complete_screen.tscn")
 @export var enemyContainer: Node
 @export var player: Player
 
@@ -32,9 +33,9 @@ func create_level_timer() -> void:
 	canvas.add_child(timerLabel)
 
 
-
 func _physics_process(delta: float) -> void:
-	if abs(player.velocity.length()) > 0.0 and not timerStarted and levelTimer == 0.0:
+	var input = Input.get_vector("left", "right", "forward", "backward")
+	if input and not timerStarted and levelTimer == 0.0:
 		timerStarted = true
 	
 	print(timerStarted)
@@ -49,3 +50,14 @@ func _on_enemy_killed(dead_enemy: Node3D) -> void:
 	for i in range(0, enemyArray.size()):
 		if dead_enemy == enemyArray[i]:
 			enemyArray.remove_at(i)
+
+
+func _on_level_complete() -> void:
+	endTime = levelTimer
+	timerStarted = false
+	
+	var completeScreen = levelCompleteScene.instantiate()
+	completeScreen.best_time = 23.55
+	completeScreen.current_time = endTime
+	
+	get_parent().add_child(completeScreen)
