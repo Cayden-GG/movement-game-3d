@@ -28,7 +28,7 @@ _data = {
 }
 point_count = 10
 
-[node name="Level1" type="Node3D" unique_id=1650081450]
+[node name="Level_1" type="Node3D" unique_id=1650081450]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1890250427]
 environment = SubResource("Environment_nsrm0")
@@ -415,7 +415,7 @@ curve = SubResource("Curve3D_6iamk")
 debug_custom_color = Color(0.55953115, 0.097043075, 0.2370654, 1)
 
 [node name="PathFollow3D" type="PathFollow3D" parent="stage/bigStairs2/grindRail/Path3D" unique_id=702507554]
-transform = Transform3D(0.044177894, 0.004929563, -0.9989878, -2.3282315e-10, 0.9999661, 0.004934371, 0.9989915, -0.00021799732, 0.044177733, 2.332, -0.8, -2.057)
+transform = Transform3D(0.044177894, 0.004929563, -0.9989875, -2.3282315e-10, 0.9999661, 0.0049343696, 0.9989915, -0.00021799732, 0.044177722, 2.332, -0.8, -2.057)
 
 [node name="CSGCombiner3D2" type="CSGCombiner3D" parent="stage" unique_id=1022707181]
 
@@ -518,6 +518,6 @@ enemyContainer = NodePath("../enemyContainer")
 player = NodePath("../Player")
 
 [node name="door" parent="." unique_id=1153481587 node_paths=PackedStringArray("levelManager") instance=ExtResource("5_6761a")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 94.804016, 2.6359992, 11.036356)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.097588, 2.6359992, 11.036356)
 collision_mask = 3
 levelManager = NodePath("../levelManager")

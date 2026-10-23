@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://d0du4cu7t18dp"]
 
-[ext_resource type="Script" uid="uid://ck1uegqex2ey8" path="res://scenes/menus/level_complete_screen.gd" id="1_fx57g"]
+[ext_resource type="Script" uid="uid://ck1uegqex2ey8" path="res://scripts/menus/level_complete_screen.gd" id="1_fx57g"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_hjrm4"]
 
@@ -11,12 +11,14 @@
 [sub_resource type="CanvasTexture" id="CanvasTexture_y8440"]
 
 [node name="levelCompleteScreen" type="Control" unique_id=296966209]
+process_mode = 2
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 script = ExtResource("1_fx57g")
 
 [node name="backgroundOverlay" type="TextureRect" parent="." unique_id=288899288]

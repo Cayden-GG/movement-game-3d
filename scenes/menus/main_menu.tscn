@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://drr36umhxgjcp"]
+
+[ext_resource type="Script" uid="uid://16gxwmcdpt6k" path="res://scripts/menus/main_menu.gd" id="1_xqga4"]
+
+[node name="mainMenu" type="Control" unique_id=176956866 node_paths=PackedStringArray("menu_btns", "level_container")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xqga4")
+menu_btns = NodePath("menuBtns")
+level_container = NodePath("levelContainer")
+
+[node name="menuBtns" type="VBoxContainer" parent="." unique_id=1259108324]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="playBtn" type="Button" parent="menuBtns" unique_id=625145648]
+layout_mode = 2
+text = "Play Game"
+
+[node name="settingsBtn" type="Button" parent="menuBtns" unique_id=135336345]
+layout_mode = 2
+text = "Settings"
+
+[node name="exitBtn" type="Button" parent="menuBtns" unique_id=586779647]
+layout_mode = 2
+text = "Exit Game"
+
+[node name="levelContainer" type="GridContainer" parent="." unique_id=1492795115]
+visible = false
+custom_minimum_size = Vector2(600, 400)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -200.0
+offset_right = 300.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 25
+theme_override_constants/v_separation = 25
+columns = 4
+
+[connection signal="pressed" from="menuBtns/playBtn" to="." method="_on_play_btn_pressed"]
+[connection signal="pressed" from="menuBtns/exitBtn" to="." method="_on_exit_btn_pressed"]

@@ -20,7 +20,7 @@ func enter(prevState: State) -> void:
 	land_timer = playerData.LAND_DURATION
 	jump_buffer.resetTimer()
 	max_vel = 0.0
-	exitVelocity = prevState.exitVelocity 
+	exitVelocity = prevState.exitVelocity or 0
 
 func exit(nextState: State) -> void:
 	pass

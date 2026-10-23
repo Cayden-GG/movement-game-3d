@@ -18,6 +18,11 @@ config/features=PackedStringArray("4.7", "Forward Plus")
 
 buses/default_bus_layout="uid://dd6juourrb7f5"
 
+[autoload]
+
+GameManager="*uid://6jqv32tsmab0"
+SceneTransition="*uid://dw0l6hewsbftd"
+
 [display]
 
 window/size/mode=3
